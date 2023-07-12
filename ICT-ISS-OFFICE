@@ -1,0 +1,242 @@
+sh ru
+! Embedded ASCII Configuration Generator Script
+! Model = Ethernet Routing Switch 4548GT-PWR
+! Software version = v5.4.0.008
+!
+! Displaying only parameters different to default
+!================================================
+enable
+configure terminal
+!
+! *** CORE ***
+!
+
+telnet-access logging all
+cli password switch serial local
+cli password switch telnet local
+username "jkuatadmin" "qazwsx" rw
+!
+! *** SNMP ***
+!
+snmp-server name "ICT-ISS-OFFICE"
+snmp-server user support md5 ******** write-view Jkuat@123
+!
+----More (q=Quit, space/return=Continue)----                                            ! *** IP  ***
+!
+ip default-gateway 10.1.10.1
+ip address switch 10.1.10.247
+ip address netmask 255.255.255.0
+!
+! *** IP Manager ***
+!
+!
+! *** ASSET ID ***
+!
+!
+! *** EAP ***
+!
+!
+! *** IPFIX ***
+!
+!
+! *** System Logging ***
+!
+!
+! *** STACK ***
+----More (q=Quit, space/return=Continue)----                                            !
+!
+! *** Custom Banner ***
+!
+!
+! *** RSTP (Phase 1) ***
+!
+!The Spanning tree operation mode cannot be changed without rebooting.
+!The Spanning tree operation mode is required to be set to RSTP before
+!loading this ASCII configuration file.
+spanning-tree op-mode rstp
+!
+! *** VLAN ***
+!
+vlan create 10,20,30,100,110,242,260,285,442,460,485,500,900,930,953,955,999,10
+10,1035,1068,1092,1105-1115,1140-1146,1155 type port
+vlan name 110 "mgmt"
+vlan name 260 "ICT-ISS-DATA"
+vlan name 460 " ICT-ISS-voice"
+vlan name 999 "NATIVE"
+vlan ports 1-45 tagging unTagPvidOnly 
+vlan ports 46-48 tagging tagAll filter-untagged-frame enable 
+----More (q=Quit, space/return=Continue)----                                            vlan configcontrol flexible
+vlan members 100,110,242,260,285,442,460,485,500,900,930,953,955,1010,1035,1068
+,1092,1105-1115,1140-1146,1155 1-48
+vlan ports 1-5 pvid 260
+vlan ports 6 pvid 1010
+vlan ports 7-13 pvid 260
+vlan ports 14 pvid 285
+vlan ports 15 pvid 1068
+vlan ports 16-17 pvid 260
+vlan ports 18 pvid 1155
+vlan ports 19-46 pvid 260
+vlan configcontrol automatic
+!
+! *** EAP Guest VLAN ***
+!
+!
+! *** EAP Fail Open VLAN ***
+!
+!
+! *** EAP Voip VLAN ***
+!
+!
+----More (q=Quit, space/return=Continue)----                                            ! *** Port Mirroring ***
+!
+!
+! *** QOS ***
+!
+!
+! *** RMON ***
+!
+!
+! *** Interface ***
+!
+interface FastEthernet ALL
+shutdown port 21,38,44 
+exit
+!
+! *** MLT (Phase 1) ***
+!
+!
+! *** MAC-Based Security ***
+!
+!
+! *** LACP ***
+----More (q=Quit, space/return=Continue)----                                            !
+!
+! *** ADAC ***
+!
+!
+! *** RSTP (Phase 2) ***
+!
+interface FastEthernet ALL
+spanning-tree rstp port 1-45 edge-port true
+spanning-tree bpdu-filtering port 1-4 enable timeout 0
+spanning-tree bpdu-filtering port 5 timeout 0
+spanning-tree bpdu-filtering port 6-13 enable timeout 0
+spanning-tree bpdu-filtering port 14-15 timeout 0
+spanning-tree bpdu-filtering port 16 enable timeout 0
+spanning-tree bpdu-filtering port 17-18 timeout 0
+spanning-tree bpdu-filtering port 19-23 enable timeout 0
+spanning-tree bpdu-filtering port 24 timeout 0
+spanning-tree bpdu-filtering port 25-35 enable timeout 0
+spanning-tree bpdu-filtering port 36 timeout 0
+spanning-tree bpdu-filtering port 37-41 enable timeout 0
+spanning-tree bpdu-filtering port 42 timeout 0
+spanning-tree bpdu-filtering port 43-44 enable timeout 0
+----More (q=Quit, space/return=Continue)----                                            spanning-tree bpdu-filtering port 45 timeout 0
+exit
+!
+! *** VLAN Phase 2***
+!
+vlan mgmt 110
+!
+! *** MLT (Phase 2) ***
+!
+!
+! *** PoE ***
+!
+!
+! *** RTC ***
+!
+!
+! *** Avaya Energy Saver ***
+!
+!
+! *** AUR ***
+!
+!
+----More (q=Quit, space/return=Continue)----                                            ! *** AAUR ***
+!
+!
+! *** L3 ***
+!
+interface vlan 110
+no ip routing
+exit
+!
+! *** IPV6 ***
+!
+!
+! *** VLACP ***
+!
+!
+! *** DHCP Relay ***
+!
+!
+! *** 802.1ab ***
+!
+
+!
+----More (q=Quit, space/return=Continue)----                                            ! *** 802.1AB MED Voice Network Policies ***
+!
+!
+! *** L3 Protocols ***
+!
+
+! --- Proxy ARP ---
+
+
+! --- UDP Broadcast Forwarding --- 
+
+
+! --- Route Policies ---
+
+
+! --- OSPF ---
+
+
+! --- RIP ---
+
+!
+! *** DHCP SNOOPING ***
+----More (q=Quit, space/return=Continue)----                                            !
+ip dhcp-snooping
+ip dhcp-snooping vlan 242
+ip dhcp-snooping vlan 260
+ip dhcp-snooping vlan 285
+ip dhcp-snooping vlan 442
+ip dhcp-snooping vlan 460
+ip dhcp-snooping vlan 485
+ip dhcp-snooping vlan 500
+ip dhcp-snooping vlan 900
+ip dhcp-snooping vlan 930
+ip dhcp-snooping vlan 953
+ip dhcp-snooping vlan 955
+ip dhcp-snooping vlan 1035
+ip dhcp-snooping vlan 1068
+ip dhcp-snooping vlan 1092
+ip dhcp-snooping vlan 1105
+ip dhcp-snooping vlan 1110
+ip dhcp-snooping vlan 1111
+ip dhcp-snooping vlan 1112
+ip dhcp-snooping vlan 1113
+ip dhcp-snooping vlan 1114
+----More (q=Quit, space/return=Continue)----                                            ip dhcp-snooping vlan 1140
+ip dhcp-snooping vlan 1141
+ip dhcp-snooping vlan 1142
+ip dhcp-snooping vlan 1143
+ip dhcp-snooping vlan 1144
+ip dhcp-snooping vlan 1145
+ip dhcp-snooping vlan 1146
+ip dhcp-snooping vlan 1155
+interface FastEthernet ALL
+ip dhcp-snooping port 46-48 trusted
+exit
+!
+! *** ARP INSPECTION ***
+!
+!
+! *** IP SOURCE GUARD ***
+!
+!
+! *** STACK MONITOR ***
+!
+ICT-ISS-OFFICE(config)#                
