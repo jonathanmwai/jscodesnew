@@ -1,0 +1,215 @@
+SMARTEC#sh ru
+config-file-header
+SMARTEC
+v1.4.2.4 / R800_NIK_1_4_194_194
+CLI v1.0
+set system mode switch
+
+file SSD indicator encrypted
+@
+ssd-control-start
+ssd config
+ssd file passphrase control unrestricted
+no ssd file integrity control
+ssd-control-end cb0a3fdb1f3a1af4e4430033719968c0
+!
+vlan database
+vlan 110,242,429,442
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone________
+voice vlan oui-table add 00036b Cisco_phone_____________
+voice vlan oui-table add 00096e Avaya___________________
+voice vlan oui-table add 000fe2 H3C_Aolynk______________
+voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
+voice vlan oui-table add 00d01e Pingtel_phone___________
+voice vlan oui-table add 00e075 Polycom/Veritel_phone___
+voice vlan oui-table add 00e0bb 3Com_phone______________
+
+
+!
+interface vlan 110
+ ip address 10.1.10.231 255.255.255.0
+ no ip address dhcp
+!
+interface gigabitethernet1
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet2
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet3
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet4
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet5
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet6
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet7
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet8
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet9
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet10
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet11
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet12
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet13
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet14
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet15
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet16
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet17
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet18
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 242
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet19
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 242
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet20
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 242
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet21
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 242
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet22
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet23
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 242
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet24
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 242
+!
+interface gigabitethernet26
+ ip dhcp snooping trust
+ spanning-tree link-type point-to-point
+ switchport trunk allowed vlan add 110,242,429,442
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type switch
+!
+interface gigabitethernet27
+ ip dhcp snooping trust
+ switchport trunk allowed vlan add 110,242,429,442
+ macro description " no_switch     "
+ no macro auto smartport
+!
+interface gigabitethernet28
+ ip dhcp snooping trust
+ switchport trunk allowed vlan add 110,242,442
+ macro description " no_switch"
+!
+exit
+ip dhcp snooping vlan 242
+ip dhcp snooping vlan 442
+ip default-gateway 10.1.10.1
+
+
+
+
+
+SMARTEC(config-vlan)#27-Dec-2015 14:29:58 %CDP-W-NATIVE_VLAN_MISMATCH: Native VLAN mismatch detected on interface gi27.
+27-Dec-2015 14:32:58 %LINK-W-Down:  gi22
+27-Dec-2015 14:33:06 %STP-W-PORTSTATUS: gi22: STP status Forwarding
+27-Dec-2015 14:33:06 %LINK-I-Up:  gi22
+27-Dec-2015 14:33:37 %AUTOSMARTPORT-E-FAILEDMACRO: Macro switch for auto smart port type Switch on interface gi22 failed at command number 11
+
+27-Dec-2015 14:34:55 %LINK-W-Down:  gi22, aggregated (1)
+27-Dec-2015 14:35:00 %STP-W-PORTSTATUS: gi22: STP status Forwarding, aggregated (1)
+27-Dec-2015 14:35:00 %LINK-I-Up:  gi22, aggregated (1)
+27-Dec-2015 14:35:41 %CDP-W-NATIVE_VLAN_MISMATCH: Native VLAN mismatch detected on interface gi27.
+
+
+
+
